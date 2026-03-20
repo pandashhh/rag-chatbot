@@ -15,9 +15,9 @@ Basiert auf **Retrieval Augmented Generation (RAG)** mit LlamaIndex und ChromaDB
 ## 🏗️ Architektur
 
 ```
-PDF Upload → Chunks (512 Tokens) → Embeddings (OpenAI) → ChromaDB
-                                                              ↓
-User Frage → Embedding → Ähnlichkeitssuche → Top-3 Chunks → GPT-4o-mini → Antwort
+PDF Upload → Chunks (512 Tokens) → Embeddings (HuggingFace, lokal) → ChromaDB
+                                                                           ↓
+User Frage → Embedding → Ähnlichkeitssuche → Top-3 Chunks → Claude → Antwort
 ```
 
 **RAG erklärt in einem Satz:**
@@ -30,7 +30,8 @@ und geben nur diese als Kontext mit – das macht Antworten präziser und günst
 |------|-------|
 | [LlamaIndex](https://www.llamaindex.ai/) | RAG-Framework: Laden, Indexieren, Abfragen |
 | [ChromaDB](https://www.trychroma.com/) | Vektordatenbank (lokal, kein Cloud-Account nötig) |
-| [OpenAI API](https://openai.com/) | Embeddings (text-embedding-3-small) + LLM (gpt-4o-mini) |
+| [Anthropic Claude API](https://www.anthropic.com/) | LLM für die Antwortgenerierung (claude-sonnet) |
+| [HuggingFace sentence-transformers](https://huggingface.co/) | Embeddings (lokal, kostenlos, kein API-Key nötig) |
 | [Streamlit](https://streamlit.io/) | Web-UI |
 | Python 3.11 | Programmiersprache |
 
@@ -38,7 +39,7 @@ und geben nur diese als Kontext mit – das macht Antworten präziser und günst
 
 ### Voraussetzungen
 - Python 3.11+
-- OpenAI API Key ([hier holen](https://platform.openai.com/api-keys))
+- Anthropic API Key ([hier holen](https://console.anthropic.com/))
 
 ### Setup
 
@@ -57,7 +58,7 @@ pip install -r requirements.txt
 
 # 4. API-Key konfigurieren
 cp .env.example .env
-# Öffne .env und trage deinen OPENAI_API_KEY ein
+# Öffne .env und trage deinen ANTHROPIC_API_KEY ein
 
 # 5. App starten
 streamlit run src/app.py
