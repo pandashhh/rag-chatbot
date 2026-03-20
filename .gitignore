@@ -1,0 +1,29 @@
+# ============================================================
+# .gitignore – diese Dateien werden NICHT auf GitHub gepusht
+# ============================================================
+
+# .env enthält deine echten API-Keys – NIEMALS pushen!
+.env
+
+# Virtuelle Umgebung – jeder installiert seine eigene
+venv/
+env/
+.venv/
+
+# ChromaDB speichert die Vektoren lokal hier
+chroma_db/
+
+# Python-Kompilierungsdateien (unnötig für GitHub)
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS Systemdateien
+.DS_Store
+
+# VSCode Einstellungen (projektspezifisch – nicht auf GitHub pushen)
+.vscode/
+
+# Hochgeladene Dokumente (zu groß für GitHub, außerdem privat)
+uploads/
+*.pdf
